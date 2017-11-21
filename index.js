@@ -9,6 +9,8 @@ savedNumber and resets (for now) number's "Number" value to an empty string ("")
 let savedNumber = "";
 let operator = "";
 let number = "";
+let result = "";
+let equals = "";
 
 /*
 This function is triggered by onclick of the number 1 button.
@@ -17,41 +19,11 @@ which in this case is "1". If onclick is triggered again, this will concatenate 
 to the previous string, giving "11". This stores the number for our Calculator.
  */
 
-function button1() {
-  number += document.getElementById('1').getAttribute('data-value');
-  console.log(number)
-}
-function button2() {
-  number += document.getElementById('2').getAttribute('data-value');
-  console.log(number)
-}
-function button3() {
-  number += document.getElementById('3').getAttribute('data-value');
-  console.log(number)
-}
-function button4() {
-  number += document.getElementById('4').getAttribute('data-value');
-  console.log(number)
-}
-function button5() {
-  number += document.getElementById('5').getAttribute('data-value');
-  console.log(number)
-}
-function button6() {
-  number += document.getElementById('6').getAttribute('data-value');
-  console.log(number)
-}
-function button7() {
-  number += document.getElementById('7').getAttribute('data-value');
-  console.log(number)
-}
-function button8() {
-  number += document.getElementById('8').getAttribute('data-value');
-  console.log(number)
-}
-function button9() {
-  number += document.getElementById('9').getAttribute('data-value');
-  console.log(number)
+//TODO: Refactor button functions as they are very similar
+
+function numberClick(id) {
+  number += document.getElementById(id).getAttribute('data-value');
+  showDisplay();
 }
 
 /*
@@ -61,31 +33,19 @@ When this onclick function is triggered, this stores the operator so that at thi
 and the operator to be used on that number.
  */
 
-function add(){
-  operator = document.getElementById('add').getAttribute('data-value');
+function selectOperator(input){
+  operator = input;
   savedNumber = number;
   number = '';
-}
-function subtract(){
-  operator = document.getElementById('subtract').getAttribute('data-value');
-  savedNumber = number;
-  number = '';
-}
-function multiply(){
-  operator = document.getElementById('multiply').getAttribute('data-value');
-  savedNumber = number;
-  number = '';
-}
-function divide(){
-  operator = document.getElementById('divide').getAttribute('data-value');
-  savedNumber = number;
-  number = '';
+  showDisplay();
 }
 
 function reset(){
+  showDisplay();
   savedNumber = "";
   operator = "";
   number = "";
+  result = "";
 }
 
 /*
@@ -94,22 +54,30 @@ button. This function tests which operator has been chosen and depending on that
 perform the relevant operation. This function takes in two strings (savedNumber and number) and turns them into Numbers with Number()
 before operating on them.
  */
-
+//TODO: Refactor to switchcase
 function runCalc () {
 if(operator == "+"){
-	return Number(number) + Number(savedNumber);
+	return Number(savedNumber) + Number(number);
 }if(operator == "-"){
-	return Number(number) - Number(savedNumber);
+	return Number(savedNumber) - Number(number);
 }if(operator == "*"){
-	return Number(number) * Number(savedNumber);
+	return Number(savedNumber) * Number(number);
 }if(operator == "/"){
-	return Number(number) / Number(savedNumber);
+	return Number(savedNumber) / Number(number);
 	}
 };
+
+function showDisplay(){
+  document.getElementById('number').innerText = number;
+  document.getElementById('operator').innerText = operator;
+  document.getElementById('savedNumber').innerText = savedNumber;
+  document.getElementById('result').innerHTML = result ? '<span>=</span>' + result : '';
+}
 
 function calcDisplay(){
   console.log('Current Number',number)
   console.log('saved Number',savedNumber)
-  savedNumber = runCalc();
-  console.log (savedNumber);
+  result = runCalc();
+  showDisplay();
+  reset();
 }
