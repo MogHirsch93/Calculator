@@ -1,0 +1,24 @@
+#container{
+  border: solid 2px black;
+  width:225px;
+  height: 250px;
+  margin-top: 250px;
+  margin-left: 650px;
+  position:absolute:
+  top: 100px;
+  background-color: #5E584C;
+}
+#buttons{
+  height: 10px;
+  margin: 15px;
+  display:grid;
+  justify-content: center;
+}
+
+#display{
+margin: 4px;
+  border:solid 1px black;
+  height: 35px;
+  width: 215px;
+  background-color: #E2E6DF;
+}

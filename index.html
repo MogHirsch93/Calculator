@@ -4,14 +4,17 @@
 <head>
 
   <title> Calculator </title>
-
+<link href='index.css' rel='stylesheet' type='text/css' />
 </head>
 
 <body>
+<div id="container">
 
   <div id="display">
     <span id="number"></span><span id="operator"></span><span id="savedNumber"></span><span id="result"></span>
   </div>
+
+<div id='buttons'>
 
   <div class="operators" >
     <!-- Button takes an id because there is only one of them.
@@ -60,6 +63,10 @@
     <button id="equals" data-value="=" onclick="calcDisplay()"> = </button>
 
   </div>
+
+</div>
+
+</div>
 
 <script src="index.js"></script>
 
